@@ -2,7 +2,9 @@
   "name": "react-kbd-shortcuts-monorepo",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter react-kbd-shortcuts-sandbox dev",
+    "dev": "pnpm --parallel --filter \"react-kbd-shortcuts\" --filter \"react-kbd-shortcuts-sandbox\" run dev",
+    "dev:lib": "pnpm --filter react-kbd-shortcuts build:watch",
+    "dev:sandbox": "pnpm --filter react-kbd-shortcuts-sandbox dev",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "clean": "git clean -xfd && git reset --hard"

@@ -1,6 +1,7 @@
 {
   "name": "react-kbd-shortcuts",
   "version": "0.1.5",
+  "description": "A headless React library for parsing and rendering keyboard shortcuts from natural language input",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -11,11 +12,34 @@
     "README.md"
   ],
   "sideEffects": false,
+  "keywords": [
+    "react",
+    "keyboard",
+    "shortcuts",
+    "hotkeys",
+    "keybindings",
+    "kbd",
+    "headless",
+    "accessibility",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unstable-studios/react-kbd-shortcuts.git",
+    "directory": "packages/react-kbd-shortcuts"
+  },
+  "bugs": {
+    "url": "https://github.com/unstable-studios/react-kbd-shortcuts/issues"
+  },
+  "homepage": "https://github.com/unstable-studios/react-kbd-shortcuts#readme",
+  "license": "MIT",
+  "author": "unstable-studios",
   "peerDependencies": {
     "react": ">=19",
     "react-dom": ">=19"
   },
   "scripts": {
+    "dev": "rollup -c -w",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "lint": "eslint src --ext .js,.jsx"

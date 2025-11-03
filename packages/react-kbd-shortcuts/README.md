@@ -140,3 +140,40 @@ function MyComponent() {
 ### Media Keys
 
 - `volumeup`, `volumedown`, `volumemute`
+
+## Development
+
+### Building
+
+```bash
+# Build once
+pnpm build
+
+# Build and watch for changes
+pnpm dev
+```
+
+### Project Structure
+
+```
+packages/react-kbd-shortcuts/
+├── src/
+│   ├── components/       # React components
+│   ├── hooks/           # React hooks
+│   ├── utils/           # Parser utilities
+│   └── index.js         # Main entry
+├── dist/                # Built ESM output (gitignored)
+├── index.d.ts           # TypeScript definitions
+└── rollup.config.mjs    # Build configuration
+```
+
+### Testing Changes
+
+Use the sandbox example to test changes during development:
+
+```bash
+# From monorepo root - runs library watch + sandbox dev in parallel
+pnpm dev
+```
+
+The sandbox imports from `dist/`, so the library auto-rebuilds when you edit source files.
