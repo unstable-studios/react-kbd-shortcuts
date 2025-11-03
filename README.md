@@ -54,3 +54,53 @@ function MyComponent() {
   return <pre>{JSON.stringify(keys)}</pre>;
 }
 ```
+
+## Supported Keys
+
+### Modifiers
+
+- `ctrl`, `control` → Ctrl
+- `cmd`, `command`, `win` → Meta (⌘ on Mac, ⊞ on Windows)
+- `alt`, `option` → Alt
+- `shift` → Shift
+
+### Navigation
+
+- `up`, `down`, `left`, `right`, `uparrow`, `downarrow`, `leftarrow`, `rightarrow` → Arrow keys
+- `home`, `end`
+- `pageup`, `pagedown`, `pgup`, `pgdn` → Page Up/Down
+
+### Editing
+
+- `enter`, `tab`, `space`
+- `backspace`, `delete`, `del`
+- `esc`, `escape`
+
+### Function Keys
+
+- `f1` through `f12` → F1-F12
+
+### Symbols
+
+- `comma`, `period`, `slash`, `backslash`
+- `semicolon`, `quote`
+- `bracketleft`, `bracketright`
+- `equal`, `plus`, `minus`
+
+### Numpad
+
+- `num0` through `num9` → Numpad digits
+- `nummultiply`, `numadd`, `numsubtract`, `numdecimal`, `numdivide` → Numpad operators
+
+### Lock & Special Keys
+
+- `capslock`, `caps` → Caps Lock
+- `numlock`, `num` → Num Lock
+- `scrolllock`, `scroll` → Scroll Lock
+- `insert`, `ins`
+- `pause`
+- `printscreen`, `prtsc` → Print Screen
+
+### Media Keys
+
+- `volumeup`, `volumedown`, `volumemute`
