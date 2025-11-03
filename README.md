@@ -55,6 +55,41 @@ function MyComponent() {
 }
 ```
 
+### Using Symbols Instead of Text
+
+Pass `useSymbols={true}` to render Unicode symbols (⌘, ⌃, ⌥, etc.) instead of text labels:
+
+```jsx
+import { KeyCombo } from "react-kbd-shortcuts";
+
+// Text mode (default): "Ctrl + Shift + K"
+<KeyCombo combo="ctrl+shift+K" />
+
+// Symbol mode: "⌃ + ⇧ + K"
+<KeyCombo combo="ctrl+shift+K" useSymbols />
+
+// With hook
+function MyComponent() {
+  const keys = useKeyCombo("command shift S", true);
+  return <span>{keys.join(" + ")}</span>; // "⌘ + ⇧ + S"
+}
+```
+
+**Available symbols:**
+- Ctrl → ⌃
+- Meta (Command/Win) → ⌘
+- Alt (Option) → ⌥
+- Shift → ⇧
+- Enter → ↵
+- Escape → ⎋
+- Tab → ⇥
+- Backspace → ⌫
+- Delete → ⌦
+- CapsLock → ⇪
+- Arrow keys → ↑ ↓ ← →
+- PageUp/Down → ⇞ ⇟
+- Home/End → ↖ ↘
+
 ## Supported Keys
 
 ### Modifiers

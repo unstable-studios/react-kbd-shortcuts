@@ -99,12 +99,40 @@ const KEY_ALIASES = {
   del: "Delete",
 };
 
-export function parseKeyCombo(input) {
+// Symbol representations for keys (Unicode/ASCII equivalents)
+const KEY_SYMBOLS = {
+  Ctrl: "⌃",
+  Meta: "⌘", // Command on Mac, Windows key on PC
+  Alt: "⌥",
+  Shift: "⇧",
+  Enter: "↵",
+  Escape: "⎋",
+  Tab: "⇥",
+  Backspace: "⌫",
+  Delete: "⌦",
+  CapsLock: "⇪",
+  ArrowUp: "↑",
+  ArrowDown: "↓",
+  ArrowLeft: "←",
+  ArrowRight: "→",
+  PageUp: "⇞",
+  PageDown: "⇟",
+  Home: "↖",
+  End: "↘",
+};
+
+export function parseKeyCombo(input, useSymbols = false) {
   if (!input || typeof input !== "string") return [];
-  return input
+  const keys = input
     .toLowerCase()
     .replace(/\s*\+\s*/g, "+") // normalize pluses
     .split(/\s+|\+/)
     .map((key) => KEY_ALIASES[key] || key.toUpperCase())
     .filter(Boolean);
+
+  if (useSymbols) {
+    return keys.map((key) => KEY_SYMBOLS[key] || key);
+  }
+
+  return keys;
 }

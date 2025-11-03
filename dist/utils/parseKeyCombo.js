@@ -104,10 +104,40 @@ var KEY_ALIASES = {
   "delete": "Delete",
   del: "Delete"
 };
+
+// Symbol representations for keys (Unicode/ASCII equivalents)
+var KEY_SYMBOLS = {
+  Ctrl: "⌃",
+  Meta: "⌘",
+  // Command on Mac, Windows key on PC
+  Alt: "⌥",
+  Shift: "⇧",
+  Enter: "↵",
+  Escape: "⎋",
+  Tab: "⇥",
+  Backspace: "⌫",
+  Delete: "⌦",
+  CapsLock: "⇪",
+  ArrowUp: "↑",
+  ArrowDown: "↓",
+  ArrowLeft: "←",
+  ArrowRight: "→",
+  PageUp: "⇞",
+  PageDown: "⇟",
+  Home: "↖",
+  End: "↘"
+};
 function parseKeyCombo(input) {
+  var useSymbols = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   if (!input || typeof input !== "string") return [];
-  return input.toLowerCase().replace(/\s*\+\s*/g, "+") // normalize pluses
+  var keys = input.toLowerCase().replace(/\s*\+\s*/g, "+") // normalize pluses
   .split(/\s+|\+/).map(function (key) {
     return KEY_ALIASES[key] || key.toUpperCase();
   }).filter(Boolean);
+  if (useSymbols) {
+    return keys.map(function (key) {
+      return KEY_SYMBOLS[key] || key;
+    });
+  }
+  return keys;
 }
