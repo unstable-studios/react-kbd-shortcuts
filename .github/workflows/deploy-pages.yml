@@ -35,8 +35,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies (workspace)
-        # Lockfile is intentionally not committed in this repo, so don't use --frozen-lockfile
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build library
         run: pnpm -F react-kbd-shortcuts build

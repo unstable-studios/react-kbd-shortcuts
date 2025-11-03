@@ -2,8 +2,7 @@
 node_modules/
 .pnpm-store/
 
-# Lock files (ignore all lockfiles per request)
-pnpm-lock.yaml
+# Lock files
 package-lock.json
 yarn.lock
 
