@@ -1,3 +1,5 @@
+import { KeyCombo } from "react-kbd-shortcuts";
+
 function App() {
   return (
     <>
@@ -12,7 +14,25 @@ function App() {
             </button>
           </a>
         </div>
-        <div className="flex flex-col gap-8 mt-8">Buttons</div>
+        <div className="flex flex-col gap-8 mt-8">
+          <KeyCombo combo="ctrl + s" />
+          <KeyCombo combo="cmd + shift + p" useSymbols />
+          <KeyCombo
+            combo="alt + f4"
+            render={(keys) => (
+              <div className="flex gap-2">
+                {keys.map((key, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 rounded bg-zinc-200 text-zinc-800 font-mono font-bold"
+                  >
+                    {key}
+                  </span>
+                ))}
+              </div>
+            )}
+          />
+        </div>
       </div>
     </>
   );

@@ -16,6 +16,7 @@
     "react-dom": ">=19"
   },
   "scripts": {
+    "dev": "rollup -c -w",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "lint": "eslint src --ext .js,.jsx"

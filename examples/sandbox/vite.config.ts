@@ -9,7 +9,7 @@ export default defineConfig({
     alias: {
       "react-kbd-shortcuts": path.resolve(
         __dirname,
-        "../../packages/react-kbd-shortcuts/src"
+        "../../packages/react-kbd-shortcuts/dist"
       ),
     },
   },
