@@ -1,6 +1,11 @@
 # react-kbd-shortcuts
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/react-kbd-shortcuts.svg)](https://www.npmjs.com/package/react-kbd-shortcuts)
+
 A monorepo for the `react-kbd-shortcuts` library and examples.
+
+> A headless React library for parsing and rendering keyboard shortcuts from natural language input.
 
 ## 📦 Packages
 
@@ -86,3 +91,17 @@ react-kbd-shortcuts/
 - **Package Manager**: pnpm with workspaces
 - **Language**: JavaScript with JSX, TypeScript for sandbox
 - **Framework**: React 19
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
