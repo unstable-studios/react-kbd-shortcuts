@@ -1,23 +1,13 @@
 {
-  "name": "react-kbd-shortcuts",
-  "version": "0.1.5",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "index.d.ts",
-  "peerDependencies": {
-    "react": ">=17.0.0"
-  },
-  "files": [
-    "dist/",
-    "index.d.ts"
-  ],
+  "name": "react-kbd-shortcuts-monorepo",
+  "private": true,
   "scripts": {
-    "build": "npx babel src --out-dir dist --extensions \".js,.jsx\""
+    "dev": "pnpm --filter react-kbd-shortcuts-sandbox dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "clean": "git clean -xfd && git reset --hard"
   },
   "devDependencies": {
-    "@babel/cli": "^7.26.0",
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.26.3"
+    "tailwindcss": "^4.1.16"
   }
 }
