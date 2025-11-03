@@ -76,6 +76,7 @@ function MyComponent() {
 ```
 
 **Available symbols:**
+
 - Ctrl → ⌃
 - Meta (Command/Win) → ⌘
 - Alt (Option) → ⌥

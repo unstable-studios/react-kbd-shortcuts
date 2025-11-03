@@ -12,4 +12,7 @@ export interface KeyComboProps {
 }
 export declare const KeyCombo: React.FC<KeyComboProps>;
 
-export declare function useKeyCombo(input: string, useSymbols?: boolean): string[];
+export declare function useKeyCombo(
+  input: string,
+  useSymbols?: boolean
+): string[];
