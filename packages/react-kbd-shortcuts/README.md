@@ -2,6 +2,8 @@
 
 A headless React library for parsing and rendering keyboard shortcuts from natural language input. Easily convert phrases like "ctrl+shift+K" or "command option S" into normalized key arrays, and render them with full control over styling and markup. Includes logic-only hooks and components for maximum flexibility - ideal for building custom shortcut UIs, documentation, or interactive help overlays.
 
+**[View Demo](https://unstable-studios.github.io/react-kbd-shortcuts/)**
+
 - Headless: No built-in styles - render shortcuts your way.
 - Natural input: Parse human-friendly shortcut strings.
 - React hooks & components: Use logic in any React app.

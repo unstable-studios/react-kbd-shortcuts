@@ -2,6 +2,10 @@
 
 A monorepo for the `react-kbd-shortcuts` library and examples.
 
+## 🌐 Live Demo
+
+**[View the interactive demo →](https://unstable-studios.github.io/react-kbd-shortcuts/)**
+
 ## 📦 Packages
 
 - **[packages/react-kbd-shortcuts](./packages/react-kbd-shortcuts)** - The main library
