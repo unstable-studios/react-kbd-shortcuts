@@ -6,7 +6,7 @@ Successfully built a complete React + Tailwind component library for keyboard sh
 
 #### Core Components
 
-- **Shortcut**: Main component for rendering full key combinations
+- **KbdCombo**: Main component for rendering full key combinations
 - **Kbd**: Primitive wrapper for individual key styling
 
 #### Key Features Implemented
@@ -70,20 +70,20 @@ Successfully built a complete React + Tailwind component library for keyboard sh
 import { Shortcut, Kbd } from '@unstablestudios/react-kbd-shortcuts';
 
 // Basic usage
-<Shortcut combo="cmd+k" />
-<Shortcut combo={["ctrl", "shift", "p"]} />
+<KbdCombo combo="cmd+k" />
+<KbdCombo combo={["ctrl", "shift", "p"]} />
 
 // Platform-specific
-<Shortcut combo="cmd+k" platform="windows" />
+<KbdCombo combo="cmd+k" platform="windows" />
 
 // Styled variants
-<Shortcut combo="alt+enter" variant="outline" size="lg" />
+<KbdCombo combo="alt+enter" variant="outline" size="lg" />
 
 // Custom separators
-<Shortcut combo="cmd+shift+k" separator="→" />
+<KbdCombo combo="cmd+shift+k" separator="→" />
 
 // Custom rendering
-<Shortcut
+<KbdCombo
   combo="cmd+k"
   renderKey={(display, raw, index) => (
     <Kbd className="bg-blue-100">{display}</Kbd>

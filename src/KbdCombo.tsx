@@ -1,9 +1,9 @@
 import React from "react";
-import { ShortcutProps } from "./types";
+import { KbdComboProps } from "./types";
 import { Kbd } from "./Kbd";
 import { parseCombo, normalizeKey, resolvePlatform } from "./utils";
 
-export function Shortcut({
+export function KbdCombo({
   combo,
   platform = "auto",
   useSymbols = true,
@@ -12,7 +12,7 @@ export function Shortcut({
   separator = "+",
   renderKey,
   className = "",
-}: ShortcutProps) {
+}: KbdComboProps) {
   const resolvedPlatform = resolvePlatform(platform);
   const keys = parseCombo(combo);
 
@@ -20,7 +20,7 @@ export function Shortcut({
     if (index === keys.length - 1) return null;
 
     return (
-      <span key={`sep-${index}`} className="mx-1 text-gray-400 select-none">
+      <span key={`sep-${index}`} className="mx-1.5 text-zinc-400 select-none">
         {separator}
       </span>
     );

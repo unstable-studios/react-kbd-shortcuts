@@ -11,14 +11,14 @@ npm install @unstablestudios/react-kbd-shortcuts
 ## Quick Start
 
 ```tsx
-import { Shortcut, Kbd } from "@unstablestudios/react-kbd-shortcuts";
+import { KbdCombo, Kbd } from "@unstablestudios/react-kbd-shortcuts";
 
 function App() {
   return (
     <div>
-      <Shortcut combo="cmd+k" />
-      <Shortcut combo="ctrl+shift+p" platform="windows" />
-      <Shortcut combo={["alt", "enter"]} size="md" variant="outline" />
+      <KbdCombo combo="cmd+k" />
+      <KbdCombo combo="ctrl+shift+p" platform="windows" />
+      <KbdCombo combo={["alt", "enter"]} size="md" variant="outline" />
     </div>
   );
 }
@@ -26,7 +26,7 @@ function App() {
 
 ## Components
 
-### Shortcut
+### KbdCombo
 
 Main component that renders a full key combination.
 

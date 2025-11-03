@@ -1,6 +1,7 @@
 {
   "name": "@unstablestudios/react-kbd-shortcuts",
   "version": "1.0.0",
+  "type": "module",
   "description": "React + Tailwind-friendly component library for rendering keyboard shortcut UI",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

@@ -1,5 +1,5 @@
 export { Kbd } from "./Kbd";
-export { Shortcut } from "./Shortcut";
+export { KbdCombo } from "./KbdCombo";
 export {
   parseCombo,
   normalizeKey,
@@ -11,5 +11,5 @@ export type {
   KeyVariant,
   KeySize,
   KbdProps,
-  ShortcutProps,
+  KbdComboProps,
 } from "./types";

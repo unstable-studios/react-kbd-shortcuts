@@ -19,7 +19,7 @@ export interface KbdProps {
   className?: string;
 }
 
-export interface ShortcutProps {
+export interface KbdComboProps {
   combo: string | string[];
   platform?: Platform;
   useSymbols?: boolean;

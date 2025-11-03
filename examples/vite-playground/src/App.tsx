@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-  Shortcut,
+  KbdCombo,
   Kbd,
   Platform,
   KeyVariant,
@@ -20,19 +20,19 @@ function App() {
   const detectedPlatform = detectPlatform();
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-zinc-50 py-8">
       <div className="max-w-4xl mx-auto px-4">
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-zinc-900 mb-4">
             React Kbd Shortcuts Playground
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-zinc-600">
             Interactive demo of{" "}
-            <code className="bg-gray-100 px-2 py-1 rounded">
+            <code className="bg-zinc-100 px-2 py-1 rounded">
               @unstablestudios/react-kbd-shortcuts
             </code>
           </p>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm text-zinc-500 mt-2">
             Detected platform:{" "}
             <span className="font-semibold">{detectedPlatform}</span>
           </p>
@@ -103,8 +103,8 @@ function App() {
           <h2 className="text-xl font-semibold mb-4">Basic Examples</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">String combo:</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">String combo:</span>
+              <KbdCombo
                 combo="cmd+k"
                 platform={platform}
                 useSymbols={useSymbols}
@@ -113,8 +113,8 @@ function App() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Array combo:</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Array combo:</span>
+              <KbdCombo
                 combo={["ctrl", "shift", "p"]}
                 platform={platform}
                 useSymbols={useSymbols}
@@ -123,8 +123,8 @@ function App() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">With modifier keys:</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">With modifier keys:</span>
+              <KbdCombo
                 combo="cmd+alt+shift+delete"
                 platform={platform}
                 useSymbols={useSymbols}
@@ -143,7 +143,7 @@ function App() {
               (v) => (
                 <div key={v} className="text-center">
                   <div className="mb-2">
-                    <Shortcut
+                    <KbdCombo
                       combo="cmd+k"
                       platform={platform}
                       useSymbols={useSymbols}
@@ -151,7 +151,7 @@ function App() {
                       size={size}
                     />
                   </div>
-                  <span className="text-xs text-gray-500 capitalize">{v}</span>
+                  <span className="text-xs text-zinc-500 capitalize">{v}</span>
                 </div>
               )
             )}
@@ -165,7 +165,7 @@ function App() {
             {(["xs", "sm", "md", "lg"] as KeySize[]).map((s) => (
               <div key={s} className="text-center">
                 <div className="mb-2">
-                  <Shortcut
+                  <KbdCombo
                     combo="cmd+k"
                     platform={platform}
                     useSymbols={useSymbols}
@@ -173,7 +173,7 @@ function App() {
                     size={s}
                   />
                 </div>
-                <span className="text-xs text-gray-500 uppercase">{s}</span>
+                <span className="text-xs text-zinc-500 uppercase">{s}</span>
               </div>
             ))}
           </div>
@@ -184,8 +184,8 @@ function App() {
           <h2 className="text-xl font-semibold mb-4">Custom Separators</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Default ("+"):</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Default ("+"):</span>
+              <KbdCombo
                 combo="cmd+shift+k"
                 platform={platform}
                 useSymbols={useSymbols}
@@ -194,8 +194,8 @@ function App() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Arrow ("→"):</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Arrow ("→"):</span>
+              <KbdCombo
                 combo="cmd+shift+k"
                 platform={platform}
                 useSymbols={useSymbols}
@@ -205,8 +205,8 @@ function App() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Dot ("·"):</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Dot ("·"):</span>
+              <KbdCombo
                 combo="cmd+shift+k"
                 platform={platform}
                 useSymbols={useSymbols}
@@ -216,8 +216,8 @@ function App() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Space (" "):</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Space (" "):</span>
+              <KbdCombo
                 combo="cmd+shift+k"
                 platform={platform}
                 useSymbols={useSymbols}
@@ -236,7 +236,7 @@ function App() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm">Copy:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+c"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -246,7 +246,7 @@ function App() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Paste:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+v"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -256,7 +256,7 @@ function App() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Undo:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+z"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -266,7 +266,7 @@ function App() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Select All:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+a"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -278,7 +278,7 @@ function App() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm">Search:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+f"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -288,7 +288,7 @@ function App() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">New Tab:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+t"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -298,7 +298,7 @@ function App() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Close Tab:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+w"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -308,7 +308,7 @@ function App() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Refresh:</span>
-                <Shortcut
+                <KbdCombo
                   combo="cmd+r"
                   platform={platform}
                   useSymbols={useSymbols}
@@ -325,14 +325,14 @@ function App() {
           <h2 className="text-xl font-semibold mb-4">Custom Key Renderer</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Rainbow keys:</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Rainbow keys:</span>
+              <KbdCombo
                 combo="cmd+shift+k"
                 platform={platform}
                 useSymbols={useSymbols}
                 variant={variant}
                 size={size}
-                renderKey={(display, raw, index) => (
+                renderKey={(display, _raw, index) => (
                   <Kbd
                     variant={variant}
                     size={size}
@@ -359,13 +359,13 @@ function App() {
           </h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Single key:</span>
+              <span className="text-sm text-zinc-600">Single key:</span>
               <Kbd variant={variant} size={size}>
                 ⌘
               </Kbd>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Custom content:</span>
+              <span className="text-sm text-zinc-600">Custom content:</span>
               <Kbd variant={variant} size={size}>
                 Ctrl+C
               </Kbd>
@@ -390,8 +390,8 @@ function App() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Result:</span>
-              <Shortcut
+              <span className="text-sm text-zinc-600">Result:</span>
+              <KbdCombo
                 combo={customCombo}
                 platform={platform}
                 useSymbols={useSymbols}
@@ -410,7 +410,7 @@ function App() {
               <div className="text-sm font-medium mb-2">
                 parseCombo("cmd+shift+k"):
               </div>
-              <code className="text-xs bg-gray-100 p-2 rounded block">
+              <code className="text-xs bg-zinc-100 p-2 rounded block">
                 {JSON.stringify(parseCombo("cmd+shift+k"))}
               </code>
             </div>
@@ -419,7 +419,7 @@ function App() {
                 normalizeKey("cmd", "{detectedPlatform}",{" "}
                 {useSymbols ? "true" : "false"}):
               </div>
-              <code className="text-xs bg-gray-100 p-2 rounded block">
+              <code className="text-xs bg-zinc-100 p-2 rounded block">
                 "{normalizeKey("cmd", detectedPlatform, useSymbols)}"
               </code>
             </div>
