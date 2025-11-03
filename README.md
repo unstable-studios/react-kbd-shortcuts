@@ -1,73 +1,142 @@
-# @unstablestudios/react-kbd-shortcuts
+# react-kbd-shortcuts
 
-React + Tailwind-friendly component library for rendering keyboard shortcut UI. Accepts "cmd+k" or ["ctrl","shift","p"] and auto-normalizes + displays platform-aware symbols (⌘ ⌥ ⇧) on mac, and text equivalents on Windows/Linux. Purely visual; no keybinding logic.
+A headless React library for parsing and rendering keyboard shortcuts from natural language input. Easily convert phrases like "ctrl+shift+K" or "command option S" into normalized key arrays, and render them with full control over styling and markup. Includes logic-only hooks and components for maximum flexibility - ideal for building custom shortcut UIs, documentation, or interactive help overlays.
 
-## Installation
+- Headless: No built-in styles - render shortcuts your way.
+- Natural input: Parse human-friendly shortcut strings.
+- React hooks & components: Use logic in any React app.
+- Customizable: Style and structure output however you want.
 
-```bash
-npm install @unstablestudios/react-kbd-shortcuts
+## Usage Examples
+
+### Key Component
+
+```jsx
+import { Key } from "react-kbd-shortcuts";
+
+<Key>Ctrl</Key>;
 ```
 
-## Quick Start
+### KeyCombo Component (default rendering)
 
-```tsx
-import { KbdCombo, Kbd } from "@unstablestudios/react-kbd-shortcuts";
+```jsx
+import { KeyCombo } from "react-kbd-shortcuts";
 
-function App() {
-  return (
+<KeyCombo combo="ctrl+shift+K" />;
+```
+
+### KeyCombo Component (custom rendering)
+
+```jsx
+import { KeyCombo } from "react-kbd-shortcuts";
+
+<KeyCombo
+  combo="command option S"
+  render={(keys) => (
     <div>
-      <KbdCombo combo="cmd+k" />
-      <KbdCombo combo="ctrl+shift+p" platform="windows" />
-      <KbdCombo combo={["alt", "enter"]} size="md" variant="outline" />
+      {keys.map((key, idx) => (
+        <span key={key} style={{ padding: 4, border: "1px solid #ccc" }}>
+          {key}
+        </span>
+      ))}
     </div>
-  );
+  )}
+/>;
+```
+
+### useKeyCombo Hook
+
+```jsx
+import { useKeyCombo } from "react-kbd-shortcuts";
+
+function MyComponent() {
+  const keys = useKeyCombo("ctrl alt delete");
+  return <pre>{JSON.stringify(keys)}</pre>;
 }
 ```
 
-## Components
+### Using Symbols Instead of Text
 
-### KbdCombo
+Pass `useSymbols={true}` to render Unicode symbols (⌘, ⌃, ⌥, etc.) instead of text labels:
 
-Main component that renders a full key combination.
+```jsx
+import { KeyCombo } from "react-kbd-shortcuts";
 
-#### Props
+// Text mode (default): "Ctrl + Shift + K"
+<KeyCombo combo="ctrl+shift+K" />
 
-- `combo`: `string | string[]` - The key combination (e.g., "cmd+k" or ["ctrl", "shift", "p"])
-- `platform`: `"auto" | "mac" | "windows" | "linux"` - Platform for key symbols (default: "auto")
-- `useSymbols`: `boolean` - Use symbols on mac vs plaintext (default: true)
-- `variant`: `"solid" | "soft" | "outline" | "ghost"` - Visual style (default: "soft")
-- `size`: `"xs" | "sm" | "md" | "lg"` - Size scale (default: "sm")
-- `separator`: `React.ReactNode` - Custom separator between keys (default: "+")
-- `renderKey`: `(display: string, rawToken: string, index: number) => React.ReactNode` - Custom key renderer
+// Symbol mode: "⌃ + ⇧ + K"
+<KeyCombo combo="ctrl+shift+K" useSymbols />
 
-### Kbd
-
-Primitive wrapper for styling individual key glyphs.
-
-#### Props
-
-- `variant`: `"solid" | "soft" | "outline" | "ghost"` - Visual style (default: "soft")
-- `size`: `"xs" | "sm" | "md" | "lg"` - Size scale (default: "sm")
-- `children`: `React.ReactNode` - Content to display
-
-## Examples
-
-Run the playground to see all features:
-
-```bash
-cd examples/vite-playground
-npm i
-npm run dev
+// With hook
+function MyComponent() {
+  const keys = useKeyCombo("command shift S", true);
+  return <span>{keys.join(" + ")}</span>; // "⌘ + ⇧ + S"
+}
 ```
 
-## Build
+**Available symbols:**
 
-```bash
-npm run build
-```
+- Ctrl → ⌃
+- Meta (Command/Win) → ⌘
+- Alt (Option) → ⌥
+- Shift → ⇧
+- Enter → ↵
+- Escape → ⎋
+- Tab → ⇥
+- Backspace → ⌫
+- Delete → ⌦
+- CapsLock → ⇪
+- Arrow keys → ↑ ↓ ← →
+- PageUp/Down → ⇞ ⇟
+- Home/End → ↖ ↘
 
-## Publish
+## Supported Keys
 
-```bash
-npm publish --access public
-```
+### Modifiers
+
+- `ctrl`, `control` → Ctrl
+- `cmd`, `command`, `win` → Meta (⌘ on Mac, ⊞ on Windows)
+- `alt`, `option` → Alt
+- `shift` → Shift
+
+### Navigation
+
+- `up`, `down`, `left`, `right`, `uparrow`, `downarrow`, `leftarrow`, `rightarrow` → Arrow keys
+- `home`, `end`
+- `pageup`, `pagedown`, `pgup`, `pgdn` → Page Up/Down
+
+### Editing
+
+- `enter`, `tab`, `space`
+- `backspace`, `delete`, `del`
+- `esc`, `escape`
+
+### Function Keys
+
+- `f1` through `f12` → F1-F12
+
+### Symbols
+
+- `comma`, `period`, `slash`, `backslash`
+- `semicolon`, `quote`
+- `bracketleft`, `bracketright`
+- `equal`, `plus`, `minus`
+
+### Numpad
+
+- `num0` through `num9` → Numpad digits
+- `nummultiply`, `numadd`, `numsubtract`, `numdecimal`, `numdivide` → Numpad operators
+
+### Lock & Special Keys
+
+- `capslock`, `caps` → Caps Lock
+- `numlock`, `num` → Num Lock
+- `scrolllock`, `scroll` → Scroll Lock
+- `insert`, `ins`
+- `pause`
+- `printscreen`, `prtsc` → Print Screen
+
+### Media Keys
+
+- `volumeup`, `volumedown`, `volumemute`
