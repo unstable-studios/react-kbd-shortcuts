@@ -1,1 +1,0 @@
-{"version":3,"file":"Key.js","sources":["../../src/components/Key.js"],"sourcesContent":["import React from \"react\";\n\nconst Key = ({ children }) => {\n  return <kbd>{children}</kbd>;\n};\n\nexport default Key;\n"],"names":[],"mappings":";;;AAEA,MAAM,GAAA,GAAM,CAAC,EAAE,QAAA,EAAS,KAAM;AAC5B,EAAA,uBAAO,GAAA,CAAC,SAAK,QAAA,EAAS,CAAA;AACxB;;;;"}
