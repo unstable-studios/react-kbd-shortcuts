@@ -2,16 +2,14 @@
 
 A monorepo for the `react-kbd-shortcuts` library and examples.
 
-## 🌐 Live Demo
-
 **[View the interactive demo →](https://unstable-studios.github.io/react-kbd-shortcuts/)**
 
-## 📦 Packages
+## Packages
 
 - **[packages/react-kbd-shortcuts](./packages/react-kbd-shortcuts)** - The main library
 - **[examples/sandbox](./examples/sandbox)** - Demo application
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -76,7 +74,7 @@ react-kbd-shortcuts/
 - In dev mode, Rollup watches for changes and rebuilds automatically
 - Vite hot-reloads when dist files change
 
-## 📝 Scripts
+## Scripts
 
 - `pnpm dev` - Run library watch + sandbox dev server in parallel
 - `pnpm dev:lib` - Run library in watch mode only
@@ -84,7 +82,7 @@ react-kbd-shortcuts/
 - `pnpm build` - Build all packages
 - `pnpm lint` - Lint all packages
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Build**: Rollup + esbuild (for library), Vite (for sandbox)
 - **Package Manager**: pnpm with workspaces
