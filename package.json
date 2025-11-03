@@ -1,8 +1,14 @@
 {
   "name": "react-kbd-shortcuts",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "index.d.ts",
   "peerDependencies": {
-    "react": "^19.0.0"
-  }
+    "react": ">=17.0.0"
+  },
+  "files": [
+    "src/",
+    "index.d.ts"
+  ]
 }
