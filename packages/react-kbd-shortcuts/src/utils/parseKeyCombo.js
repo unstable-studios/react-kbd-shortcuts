@@ -99,6 +99,102 @@ const KEY_ALIASES = {
   del: "Delete",
 };
 
+// OS-specific key mappings
+const OS_KEY_STRINGS = {
+  mac: {
+    Ctrl: "Control",
+    Meta: "Cmd",
+    Alt: "Option",
+  },
+  windows: {
+    Ctrl: "Ctrl",
+    Meta: "Win",
+    Alt: "Alt",
+  },
+  linux: {
+    Ctrl: "Ctrl",
+    Meta: "Super",
+    Alt: "Alt",
+  },
+};
+
+// User-friendly text representations for keys
+const KEY_STRINGS = {
+  Ctrl: "Ctrl",
+  Meta: "Cmd", // More recognizable than "Meta"
+  Alt: "Alt",
+  Shift: "Shift",
+  Enter: "Enter",
+  Escape: "Esc",
+  Tab: "Tab",
+  Space: "Space",
+  Backspace: "Backspace",
+  Delete: "Delete",
+  CapsLock: "Caps Lock",
+  Insert: "Insert",
+  Pause: "Pause",
+  ScrollLock: "Scroll Lock",
+  NumLock: "Num Lock",
+  PrintScreen: "Print Screen",
+  ArrowUp: "Up",
+  ArrowDown: "Down",
+  ArrowLeft: "Left",
+  ArrowRight: "Right",
+  PageUp: "Page Up",
+  PageDown: "Page Down",
+  Home: "Home",
+  End: "End",
+  // Numpad keys
+  Numpad0: "Num 0",
+  Numpad1: "Num 1",
+  Numpad2: "Num 2",
+  Numpad3: "Num 3",
+  Numpad4: "Num 4",
+  Numpad5: "Num 5",
+  Numpad6: "Num 6",
+  Numpad7: "Num 7",
+  Numpad8: "Num 8",
+  Numpad9: "Num 9",
+  NumpadMultiply: "Num *",
+  NumpadAdd: "Num +",
+  NumpadSubtract: "Num -",
+  NumpadDecimal: "Num .",
+  NumpadDivide: "Num /",
+  // Symbol keys
+  Comma: ",",
+  Period: ".",
+  Slash: "/",
+  Backslash: "\\",
+  Semicolon: ";",
+  Quote: "'",
+  BracketLeft: "[",
+  BracketRight: "]",
+  Equal: "=",
+  // Media keys
+  VolumeDown: "Volume Down",
+  VolumeUp: "Volume Up",
+  VolumeMute: "Volume Mute",
+};
+
+// OS-specific symbol mappings
+const OS_KEY_SYMBOLS = {
+  mac: {
+    Ctrl: "⌃",
+    Meta: "⌘",
+    Alt: "⌥",
+  },
+  windows: {
+    Ctrl: "Ctrl",
+    Meta: "⊞",
+    Alt: "Alt",
+  },
+  linux: {
+    Ctrl: "Ctrl",
+    Meta: "◆",
+    Alt: "Alt",
+  },
+};
+
 // Symbol representations for keys (Unicode/ASCII equivalents)
 const KEY_SYMBOLS = {
   Ctrl: "⌃",
@@ -106,22 +202,59 @@ const KEY_SYMBOLS = {
   Alt: "⌥",
   Shift: "⇧",
   Enter: "↵",
-  Escape: "⎋",
+  Escape: "Esc",
   Tab: "⇥",
+  Space: "␣",
   Backspace: "⌫",
   Delete: "⌦",
   CapsLock: "⇪",
+  Insert: "Ins",
+  Pause: "⏸",
+  ScrollLock: "⤓",
+  NumLock: "⇭",
+  PrintScreen: "⎙",
   ArrowUp: "↑",
   ArrowDown: "↓",
   ArrowLeft: "←",
   ArrowRight: "→",
-  PageUp: "⇞",
-  PageDown: "⇟",
-  Home: "↖",
-  End: "↘",
+  PageUp: "PgUp",
+  PageDown: "PgDn",
+  Home: "Home",
+  End: "End",
+
+  // Numpad keys
+  Numpad0: "№0",
+  Numpad1: "№1",
+  Numpad2: "№2",
+  Numpad3: "№3",
+  Numpad4: "№4",
+  Numpad5: "№5",
+  Numpad6: "№6",
+  Numpad7: "№7",
+  Numpad8: "№8",
+  Numpad9: "№9",
+  NumpadMultiply: "№×",
+  NumpadAdd: "№+",
+  NumpadSubtract: "№−",
+  NumpadDecimal: "№.",
+  NumpadDivide: "№÷",
+  // Symbol keys
+  Comma: ",",
+  Period: ".",
+  Slash: "/",
+  Backslash: "\\",
+  Semicolon: ";",
+  Quote: "'",
+  BracketLeft: "[",
+  BracketRight: "]",
+  Equal: "=",
+  // Media keys
+  VolumeDown: "♪−",
+  VolumeUp: "♪+",
+  VolumeMute: "♪✕",
 };
 
-export function parseKeyCombo(input, useSymbols = false) {
+export function parseKeyCombo(input, useSymbols = false, os = null) {
   if (!input || typeof input !== "string") return [];
   const keys = input
     .toLowerCase()
@@ -130,9 +263,14 @@ export function parseKeyCombo(input, useSymbols = false) {
     .map((key) => KEY_ALIASES[key] || key.toUpperCase())
     .filter(Boolean);
 
+  // Apply OS-specific mappings if specified
+  const osStrings = os && OS_KEY_STRINGS[os] ? OS_KEY_STRINGS[os] : {};
+  const osSymbols = os && OS_KEY_SYMBOLS[os] ? OS_KEY_SYMBOLS[os] : {};
+
   if (useSymbols) {
-    return keys.map((key) => KEY_SYMBOLS[key] || key);
+    return keys.map((key) => osSymbols[key] || KEY_SYMBOLS[key] || key);
   }
 
-  return keys;
+  // Use OS-specific strings first, then fall back to generic strings
+  return keys.map((key) => osStrings[key] || KEY_STRINGS[key] || key);
 }

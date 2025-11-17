@@ -1,5 +1,5 @@
 import React from "react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import KeyCombo from "../src/components/KeyCombo.jsx";
 
@@ -14,7 +14,7 @@ describe("KeyCombo", () => {
 
     it("should render space-separated combo", () => {
       render(<KeyCombo combo="command shift S" />);
-      expect(screen.getByText("Meta")).toBeInTheDocument();
+      expect(screen.getByText("Cmd")).toBeInTheDocument();
       expect(screen.getByText("Shift")).toBeInTheDocument();
       expect(screen.getByText("S")).toBeInTheDocument();
     });
@@ -85,7 +85,7 @@ describe("KeyCombo", () => {
       );
 
       render(<KeyCombo combo="command shift S" render={customRender} />);
-      expect(screen.getByTestId("keys")).toHaveTextContent("Meta-Shift-S");
+      expect(screen.getByTestId("keys")).toHaveTextContent("Cmd-Shift-S");
     });
 
     it("should work with symbols in custom render", () => {
@@ -129,7 +129,97 @@ describe("KeyCombo", () => {
       render(<KeyCombo combo="ctrl+shift+up" />);
       expect(screen.getByText("Ctrl")).toBeInTheDocument();
       expect(screen.getByText("Shift")).toBeInTheDocument();
-      expect(screen.getByText("ArrowUp")).toBeInTheDocument();
+      expect(screen.getByText("Up")).toBeInTheDocument();
+    });
+  });
+
+  describe("OS-specific rendering", () => {
+    it("should render Mac-specific keys", () => {
+      render(<KeyCombo combo="ctrl+cmd+s" os="mac" />);
+      expect(screen.getByText("Control")).toBeInTheDocument();
+      expect(screen.getByText("Cmd")).toBeInTheDocument();
+      expect(screen.getByText("S")).toBeInTheDocument();
+    });
+
+    it("should render Windows-specific keys", () => {
+      render(<KeyCombo combo="ctrl+cmd+s" os="windows" />);
+      expect(screen.getByText("Ctrl")).toBeInTheDocument();
+      expect(screen.getByText("Win")).toBeInTheDocument();
+      expect(screen.getByText("S")).toBeInTheDocument();
+    });
+
+    it("should render Linux-specific keys", () => {
+      render(<KeyCombo combo="ctrl+cmd+s" os="linux" />);
+      expect(screen.getByText("Ctrl")).toBeInTheDocument();
+      expect(screen.getByText("Super")).toBeInTheDocument();
+      expect(screen.getByText("S")).toBeInTheDocument();
+    });
+
+    it("should render OS-specific symbols", () => {
+      render(<KeyCombo combo="ctrl+cmd" os="mac" useSymbols />);
+      expect(screen.getByText("⌃")).toBeInTheDocument();
+      expect(screen.getByText("⌘")).toBeInTheDocument();
+    });
+
+    it("should work with custom render and OS", () => {
+      const customRender = (keys) => (
+        <div data-testid="os-custom">{keys.join("-")}</div>
+      );
+
+      render(<KeyCombo combo="ctrl+cmd+s" os="linux" render={customRender} />);
+      expect(screen.getByTestId("os-custom")).toHaveTextContent("Ctrl-Super-S");
+    });
+  });
+
+  describe("HTML props", () => {
+    it("should accept standard HTML props", () => {
+      render(
+        <KeyCombo
+          combo="ctrl+s"
+          className="shortcut"
+          data-testid="test-combo"
+          style={{ color: "blue" }}
+        />
+      );
+
+      const element = screen.getByTestId("test-combo");
+      expect(element).toHaveClass("shortcut");
+      expect(element).toHaveStyle({ color: "rgb(0, 0, 255)" });
+    });
+
+    it("should not apply HTML props when using render function", () => {
+      const customRender = (keys) => (
+        <div data-testid="custom-rendered">{keys.join("+")}</div>
+      );
+
+      render(
+        <KeyCombo
+          combo="ctrl+s"
+          render={customRender}
+          className="should-not-apply"
+          style={{ color: "red" }}
+        />
+      );
+
+      const element = screen.getByTestId("custom-rendered");
+      expect(element).not.toHaveClass("should-not-apply");
+      expect(element).not.toHaveStyle({ color: "red" });
+    });
+
+    it("should handle event handlers", () => {
+      const handleClick = vi.fn();
+
+      render(
+        <KeyCombo
+          combo="ctrl+s"
+          data-testid="clickable-combo"
+          onClick={handleClick}
+        />
+      );
+
+      const element = screen.getByTestId("clickable-combo");
+      element.click();
+      expect(handleClick).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -149,6 +239,18 @@ describe("KeyCombo", () => {
     it("should handle mixed separators", () => {
       const { container } = render(<KeyCombo combo="ctrl + shift k" />);
       expect(container.textContent).toBe("Ctrl + Shift + K");
+    });
+
+    it("should handle null or invalid OS gracefully", () => {
+      const { container: nullContainer } = render(
+        <KeyCombo combo="ctrl+cmd+s" os={null} />
+      );
+      expect(nullContainer.textContent).toBe("Ctrl + Cmd + S");
+
+      const { container: invalidContainer } = render(
+        <KeyCombo combo="ctrl+cmd+s" os="invalid" />
+      );
+      expect(invalidContainer.textContent).toBe("Ctrl + Cmd + S");
     });
   });
 });

@@ -2,14 +2,20 @@ import React from "react";
 import { useKeyCombo } from "../hooks/useKeyCombo";
 
 // Headless KeyCombo: accepts a combo string and a render prop
-const KeyCombo = ({ combo = "", render, useSymbols = false }) => {
-  const keys = useKeyCombo(combo, useSymbols);
+const KeyCombo = ({
+  combo = "",
+  render,
+  useSymbols = false,
+  os = null,
+  ...props
+}) => {
+  const keys = useKeyCombo(combo, useSymbols, os);
   if (typeof render === "function") {
     return render(keys);
   }
   // Default rendering (can be styled by user)
   return (
-    <span>
+    <span {...props}>
       {keys.map((key, idx) => (
         <React.Fragment key={key}>
           <span>{key}</span>

@@ -7,9 +7,14 @@
     "dev:sandbox": "pnpm --filter react-kbd-shortcuts-sandbox dev",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
-    "clean": "git clean -xfd && git reset --hard"
+    "clean": "git clean -xfd && git reset --hard",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "pnpm build && changeset publish",
+    "release": "pnpm changeset:version && pnpm changeset:publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "tailwindcss": "^4.1.16"
   }
 }
