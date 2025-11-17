@@ -15,29 +15,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
-          cache: pnpm
+          cache: npm
 
       - name: Update npm to latest
         run: npm install -g npm@latest
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Run Tests
-        run: pnpm --filter react-kbd-shortcuts test
+        run: npm test
 
       - name: Build Library
-        run: pnpm --filter react-kbd-shortcuts build
+        run: npm run build
+
+      - name: Verify npm auth
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to npm
-        working-directory: packages/react-kbd-shortcuts
-        run: npm publish
+        run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

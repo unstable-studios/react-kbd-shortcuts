@@ -14,10 +14,7 @@ export default defineConfig({
       : "/",
   resolve: {
     alias: {
-      "react-kbd-shortcuts": path.resolve(
-        __dirname,
-        "../../packages/react-kbd-shortcuts/dist"
-      ),
+      "react-kbd-shortcuts": path.resolve(__dirname, "../../dist"),
     },
   },
   optimizeDeps: { include: ["react", "react-dom"] },

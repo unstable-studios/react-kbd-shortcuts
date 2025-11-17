@@ -7,10 +7,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "react-kbd-shortcuts": [
-        "packages/react-kbd-shortcuts/src",
-        "packages/react-kbd-shortcuts/index.d.ts"
-      ]
+      "react-kbd-shortcuts": ["src", "index.d.ts"]
     }
   }
 }

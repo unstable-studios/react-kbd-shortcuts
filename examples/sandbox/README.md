@@ -20,7 +20,7 @@ From **this directory**:
 pnpm dev
 ```
 
-**Note**: The sandbox imports from `../../packages/react-kbd-shortcuts/dist`, so make sure the library is built first or run the library in watch mode.
+**Note**: The sandbox imports from `../../dist`, so make sure the library is built first or run the library in watch mode.
 
 ## 🏗️ Building
 
