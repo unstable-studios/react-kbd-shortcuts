@@ -11,10 +11,11 @@
     "test:ui": "pnpm --filter react-kbd-shortcuts test:ui",
     "test:coverage": "pnpm --filter react-kbd-shortcuts test:coverage",
     "lint": "pnpm -r lint",
-    "clean": "git clean -xfd && git reset --hard"
+    "clean": "git clean -xfd && git reset --hard",
+    "version": "pnpm -F react-kbd-shortcuts exec pnpm pkg set version=$npm_package_version"
   },
   "devDependencies": {
     "tailwindcss": "^4.1.16"
   },
-  "version": "0.1.1"
+  "version": "0.4.1"
 }
