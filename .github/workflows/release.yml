@@ -1,29 +1,29 @@
-name: Release
+name: Publish Package
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
 
 jobs:
-  release:
-    name: Release
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
           cache: pnpm
 
       - name: Install Dependencies
@@ -35,12 +35,6 @@ jobs:
       - name: Build Library
         run: pnpm --filter react-kbd-shortcuts build
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: pnpm changeset:publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm
+        working-directory: packages/react-kbd-shortcuts
+        run: npm publish
