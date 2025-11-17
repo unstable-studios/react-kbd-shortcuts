@@ -1,6 +1,6 @@
 {
   "name": "react-kbd-shortcuts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A headless React library for parsing and rendering keyboard shortcuts from natural language input",
   "type": "module",
   "main": "dist/index.js",
