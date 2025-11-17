@@ -4,20 +4,17 @@ Demo application showcasing the `react-kbd-shortcuts` library.
 
 ## 🚀 Development
 
-From the **monorepo root**:
+From the **library root** (`../../`):
 
 ```bash
-# Run both library watch + dev server
-pnpm dev
-
-# Or run just the sandbox
-pnpm dev:sandbox
+# Build the library in watch mode
+npm run dev
 ```
 
-From **this directory**:
+From **this directory** (in another terminal):
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 **Note**: The sandbox imports from `../../dist`, so make sure the library is built first or run the library in watch mode.
@@ -25,7 +22,7 @@ pnpm dev
 ## 🏗️ Building
 
 ```bash
-pnpm build
+npm run build
 ```
 
 This will:
@@ -39,4 +36,4 @@ This will:
 - TypeScript
 - Vite
 - Tailwind CSS v4
-- react-kbd-shortcuts (workspace dependency)
+- react-kbd-shortcuts (local file dependency)

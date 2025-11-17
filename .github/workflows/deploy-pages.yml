@@ -23,32 +23,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          cache: npm
 
-      - name: Install dependencies (workspace)
-        run: pnpm install --frozen-lockfile
+      - name: Install dependencies (library)
+        run: npm install
 
       - name: Build library
-        run: pnpm -F react-kbd-shortcuts build
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Install sandbox dependencies
+        working-directory: examples/sandbox
+        run: npm install
 
       - name: Build sandbox app
         working-directory: examples/sandbox
         env:
           # Provided by GitHub; used by vite.config.ts to set base
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: pnpm run build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
